@@ -1,0 +1,39 @@
+<div class="flex center-all">
+    <div class="project-form col-sm-6">
+        <form [formGroup]="projectForm">
+            <div class="form-group row">
+                <label for="name" class="col-sm-5 col-form-label text-right">Email</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="name" formControlName="nameControl">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="framework" class="col-sm-5 col-form-label text-right">Select Framework</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="framework" formControlName="frameworkControl">
+                        <option *ngFor="let fw of frameworks" [value]="fw.key">{{fw.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="storeModule" class="col-sm-5 col-form-label text-right">Select Store Module</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="storeModule" formControlName="storeLibraryControl">
+                        <option>--- Select ---</option>
+                        <option *ngFor="let sm of ((framework && framework.storeModules) || [])" [value]="sm.key">{{sm.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="middleware" class="col-sm-5 col-form-label text-right">Select Middleware</label>
+                <div class="col-sm-7">
+                    <select class="form-control" id="middleware" formControlName="middlewareControl">
+                        <option>--- Select ---</option>
+                        <option *ngFor="let mw of ((storeLibrary && storeLibrary.middlewares) || [])" [value]="mw.key">{{mw.value}}</option>
+                    </select>
+                </div>
+            </div>
+            <button (click)="create()">Submit</button>
+        </form>
+    </div>
+</div>
